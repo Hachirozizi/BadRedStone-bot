@@ -27,7 +27,7 @@ const bots = [clientLoginPromise, nobloxLoginPromise];
 var checkMember;
 var checkMembers;
 
-Promise.all(bots).then(async () => {
+Promise.all(bots).then(() => {
 	console.log('all logged in');
 	var guild = client.guilds.cache.get(guildId);
 	checkMember = (member) => {
@@ -59,7 +59,7 @@ Promise.all(bots).then(async () => {
 			});
 		});
 	};
-	checkMembers = () => {
+	checkMembers = async () => {
 		const memberArray = guild.members.cache.array()
 		for (var memberIndex = 0; memberIndex < memberArray.length; memberIndex++) {
 			await checkMember(memberArray[memberIndex]);
