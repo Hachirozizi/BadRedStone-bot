@@ -1,3 +1,5 @@
 .env
 node_modules
 cookie
+workspace.sublime-workspace
+workspace.sublime-project
