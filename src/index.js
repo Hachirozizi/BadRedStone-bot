@@ -9,6 +9,8 @@ const guildId = '663067666910806035';
 const Discord = require('discord.js');
 const noblox = require('noblox.js');
 const axios = require('axios');
+const express = require('express');
+const server = express();
 
 const client = new Discord.Client();
 const clientLoginPromise = new Promise((resolve, reject) => {
@@ -77,3 +79,11 @@ client.on('guildMemberAdd', (member) => {
 });
 
 client.login(env.TOKEN);
+
+server.get('/', (req, res) => {
+	res.sendStatus(200);
+});
+
+server.listen(3000, () => {
+	console.log('listening');
+});
