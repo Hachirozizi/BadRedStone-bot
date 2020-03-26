@@ -50,7 +50,9 @@ Promise.all(bots).then(() => {
 					};
 					if (!member.roles.cache.has(role)) {
 						console.log(`Gave ${member.displayName} role ${role.name}`);
-						member.roles.add(role);
+						member.roles.add(role).catch((error) => {
+							console.log(error);
+						});
 					};
 					resolve();
 				});
@@ -65,9 +67,13 @@ Promise.all(bots).then(() => {
 	checkMembers = async () => {
 		const memberArray = guild.members.cache.array()
 		for (var memberIndex = 0; memberIndex < memberArray.length; memberIndex++) {
+			const start = Date.now();
 			await checkMember(memberArray[memberIndex]);
+			let now = Date.now();
+			for (let now = Date.now(); start + 1000 > now; now = Date.now()) {};
 		};
 	};
+	checkMembers();
 }).catch(console.log);
 
 
