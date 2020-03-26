@@ -33,6 +33,7 @@ Promise.all(bots).then(() => {
 	console.log('all logged in');
 	var guild = client.guilds.cache.get(guildId);
 	checkMember = (member) => {
+		console.log(`Checking member ${member.displayName}`);
 		return new Promise((resolve, reject) => {
 			axios.get(roverApiUrl + member.id).then((response) => {
 				var playerId = response.data.robloxId;
@@ -48,7 +49,7 @@ Promise.all(bots).then(() => {
 						});
 					};
 					if (!member.roles.cache.has(role)) {
-						console.log(`Gave ${member.username} role ${role.name}`);
+						console.log(`Gave ${member.displayName} role ${role.name}`);
 						member.roles.add(role);
 					};
 					resolve();
